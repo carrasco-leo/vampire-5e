@@ -1,0 +1,15 @@
+//-
+//- custom-setup-roll.pug — Vampire 5e
+//- ~/templates/dialogs
+//-
+
+form
+	if primary
+		-;
+		include ./roll-pool.partial.pug
+	else
+		div.form-group
+			label #{tr('V5E.RollPool')}
+			input(type="number", name="pool", value=(pool), min="1")
+
+	include ./base-setup-roll.partial.pug

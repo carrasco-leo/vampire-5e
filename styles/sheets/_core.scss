@@ -1,0 +1,90 @@
+//
+// _core.scss — Vampire 5e
+// ~/styles/sheets
+//
+
+@use '../variables' as *;
+@use '../core/input';
+
+.vampire-5e.sheet {
+	line-height: 1.5;
+
+	.sheet-wrapper {
+		margin: -8px;
+		padding: 8px;
+		overflow: hidden;
+	}
+
+	header.sheet-header {
+		font-family: $condensed-font;
+
+		.profile {
+			border: none;
+		}
+
+		h1.charname {
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			font-size: 2em;
+			line-height: 32px;
+
+			input.v5e-input {
+				@extend .v5e-input;
+			}
+		}
+	}
+
+	.sheet-header-details {
+		position: relative;
+		height: 100%;
+	}
+
+	.sheet-header-summary {
+		gap: 8px;
+		margin: 0;
+		padding: 0;
+		font-size: 18px;
+		list-style: none;
+	}
+
+	nav.sheet-tabs {
+		margin: 0 0 8px;
+		font: 700 20px/1.5 $condensed-font;
+		border: none;
+
+		.item {
+			margin: 0 20px;
+			line-height: 32px;
+			border-bottom: 3px solid $divider-color;
+
+			&.active {
+				border-color: $primary-color;
+			}
+		}
+	}
+
+	section.sheet-body {
+		overflow: hidden;
+	}
+
+	section.sheet-tab-body {
+		flex-flow: column nowrap;
+		height: 100%;
+
+		&.active {
+			display: flex;
+		}
+	}
+
+	.item-entry {
+		.item-summary {
+			flex: 0 0 100%;
+			display: none;
+		}
+
+		&.item-expanded .item-summary {
+			display: block;
+		}
+	}
+}

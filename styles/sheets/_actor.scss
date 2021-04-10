@@ -1,0 +1,158 @@
+//
+// _actor.scss — Vampire 5e
+// ~/styles/sheets
+//
+
+@use '../variables' as *;
+
+@forward './stats-section';
+@forward './disciplines-section';
+@forward './features-section';
+
+.vampire-5e.character-sheet {
+	min-width: 720px;
+	min-height: 680px;
+
+	header.sheet-header {
+		h1.charname {
+			width: calc(100% - 105px);
+		}
+	}
+}
+
+.vampire-5e.coterie-sheet {
+	min-width: 580px;
+	min-height: 640px;
+
+	header.sheet-header {
+		.v5e-box-grid {
+			flex-wrap: wrap;
+			gap: 2px;
+			width: (5*14px + 4*2px);
+			margin: auto;
+		}
+	}
+}
+
+.vampire-5e.actor-sheet {
+	header.sheet-header {
+		flex: 0 0 160px;
+
+		.profile {
+			flex: 0 0 160px;
+			max-width: 160px;
+			height: 160px;
+		}
+
+		h1.charname {
+			// width: calc(100% - 105px);
+		}
+	}
+
+	.sheet-header-xp {
+		position: absolute;
+		top: 0;
+		right: 0;
+		align-items: center;
+		gap: 4px;
+		width: 95px;
+
+		input {
+			width: auto;
+			text-align: center;
+			letter-spacing: 2px;
+		}
+	}
+
+	.sheet-header-resources {
+		gap: 8px;
+		margin: 4px 0 0;
+		padding: 0;
+		list-style: none;
+
+		h2 {
+			margin: 0 0 4px;
+			padding: 0;
+			color: #4b4a44;
+			font-size: 18px;
+			font-weight: 700;
+			line-height: 24px;
+			text-align: center;
+			border-bottom: 1px solid $divider-color;
+
+			&[data-roll] {
+				cursor: pointer;
+
+				&:hover {
+					text-shadow: 0 0 12px $primary-color;
+				}
+			}
+		}
+
+		.v5e-box-grid {
+			flex-wrap: wrap;
+			gap: 2px;
+			width: (10*14px + 9*2px);
+			margin: auto;
+		}
+	}
+
+	.sheet-header-resources-actions {
+		color: #4b4a44;
+		text-align: center;
+	}
+
+	footer.sheet-footer {
+		align-items: center;
+		gap: 8px;
+
+		> * {
+			flex: none;
+		}
+
+		.sheet-footer-spacer {
+			flex: auto;
+		}
+
+		.footer-resource {
+			font-size: 18px;
+			font-family: $condensed-font;
+		}
+	}
+
+	.description-tab-title {
+		margin: 0;
+		padding: 0 8px;
+		font-size: 16px;
+		border: none;
+	}
+
+	.description-tab-grid  {
+		margin: 0 0 8px;
+		font-size: 12px;
+		overflow: hidden;
+
+		> * {
+			display: flex;
+			flex-flow: column;
+			height: 180px;
+			padding: 4px 0;
+			border: 1px solid #b5b3a4;
+			border-radius: 4px;
+			overflow: hidden;
+		}
+
+		.editor-content {
+			padding: 0 8px;
+			text-align: justify;
+		}
+	}
+
+	.description-tab-description {
+		flex: 1;
+
+		> div {
+			height: 100%;
+		}
+	}
+}

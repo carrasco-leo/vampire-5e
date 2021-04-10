@@ -1,0 +1,29 @@
+//-
+//- character-footer.partial.pug — Vampire 5e
+//- ~/templates/actors/sections
+//-
+
+div.sheet-footer-resource #{tr('V5E.Hunger')}
+div.v5e-box-grid(data-resource="data.hunger.value")
+	each __ in Array.from({ length: 5 })
+		-;
+		div.v5e-box
+
+div.sheet-footer-resource #{tr('V5E.BloodPotency')}
+div.v5e-box-grid(data-resource="data.bloodPotency")
+	each __ in Array.from({ length: 10 })
+		-;
+		div.v5e-box.rounded
+
+div.sheet-footer-spacer
+
+if editable
+	-;
+	button.v5e-button.rouse-roll(
+		type="button",
+		data-title=(tr('V5E.BlushOfLife')),
+		data-modifier=(data.humanity.value >= 8 && 1),
+		)
+		| #{tr('V5E.BlushOfLife')}
+	button.v5e-button.rouse-roll(type="button") #{tr('V5E.Rouse')}
+	button.v5e-button.frenzy-roll(type="button") #{tr('V5E.Frenzy')}

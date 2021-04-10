@@ -1,0 +1,38 @@
+{
+	"name": "vampire-5e",
+	"title": "Vampire 5th Edition",
+	"description": "System for Vampire 5th Edition",
+	"version": "1.0.0",
+	"templateVersion": 2,
+	"author": "Me",
+	"scripts": [],
+	"esmodules": ["main.js"],
+	"styles": ["styles/main.css"],
+	"packs": [
+		{
+			"name": "disciplines",
+			"label": "Disciplines",
+			"system": "vampire-5e",
+			"path": "./packs/disciplines.db",
+			"entity": "Item",
+			"tags": ["discipline"]
+		}
+	],
+	"languages": [
+		{
+			"lang": "en",
+			"name": "English",
+			"path": "langs/en.json"
+		}
+	],
+	"socket": false,
+	"initiative": "@stats.composure + @skills.awareness",
+	"gridDistance": 10,
+	"gridUnits": "ft",
+	"primaryTokenAttribute": "health",
+	"secondaryTokenAttribute": "willpower",
+
+	"url": "https://github.com/carrasco-leo/vampire-5e",
+	"manifest": "",
+	"download": ""
+}

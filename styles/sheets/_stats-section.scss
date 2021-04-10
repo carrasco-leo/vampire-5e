@@ -1,0 +1,54 @@
+//
+// _stats-section.scss — Vampire 5e
+// ~/styles/sheets
+//
+
+@use '../variables' as *;
+
+.vampire-5e.actor-sheet {
+	.stats-tab {
+		overflow: auto;
+		scrollbar-width: thin;
+	}
+
+	.stats-tab-title {
+		margin: 0 0 8px;
+		padding: 0;
+		font-size: 18px;
+		line-height: 24px;
+		font-family: $condensed-font;
+		text-align: center;
+		border-bottom: 1px solid $divider-color;
+	}
+
+	.stats-tab {
+		.attribute-roll, .skill-roll {
+			font-size: 16px;
+			font-family: $condensed-font;
+			text-align: center;
+		}
+	}
+
+	.stats-tab .has-speciality {
+		text-decoration: underline $primary-color;
+	}
+
+	.stats-tab-specialities {
+		margin: 8px 0 0;
+
+		&list {
+			overflow: visible;
+		}
+	}
+
+	.stats-tab-skill {
+		justify-content: center;
+		align-items: center;
+	}
+
+	.stats-tab-controls {
+		flex: 0 0 68px;
+		align-self: center;
+		text-align: center;
+	}
+}

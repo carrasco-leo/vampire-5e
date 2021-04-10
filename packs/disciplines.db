@@ -1,0 +1,10 @@
+{"name":"Blood Sorcery","permission":{"default":0},"type":"discipline","data":{"id":"bloodSorcery","description":"Blood Sorcery Description"},"flags":{},"img":"icons/svg/mystery-man.svg","effects":[],"_id":"4b3cMn238p8sq8lr"}
+{"name":"Obfuscate","permission":{"default":0},"type":"discipline","data":{"id":"obfuscate","description":"Obfuscate Description"},"flags":{},"img":"icons/svg/mystery-man.svg","effects":[],"_id":"6ujBNt26A921qXPA"}
+{"name":"Potence","permission":{"default":0},"type":"discipline","data":{"id":"potence","description":"Potence Description"},"flags":{},"img":"icons/svg/mystery-man.svg","effects":[],"_id":"DETWce03EP3Qym4E"}
+{"name":"Animalism","permission":{"default":0},"type":"discipline","data":{"id":"animalism","description":"Animalism Description"},"flags":{},"img":"icons/svg/mystery-man.svg","effects":[],"_id":"Of8hwBOWqHUChWns"}
+{"name":"Protean","permission":{"default":0},"type":"discipline","data":{"id":"protean","description":"Protean Description"},"flags":{},"img":"icons/svg/mystery-man.svg","effects":[],"_id":"PafDwGM52vXAqjnc"}
+{"name":"Auspex","permission":{"default":0},"type":"discipline","data":{"id":"auspex","description":"Auspex Description"},"flags":{},"img":"icons/svg/mystery-man.svg","effects":[],"_id":"e2mbVOFgfvWwqkb0"}
+{"name":"Celerity","permission":{"default":0},"type":"discipline","data":{"id":"celerity","description":"Celerity Description"},"flags":{},"img":"icons/svg/mystery-man.svg","effects":[],"_id":"oXFvPvriydAsK29N"}
+{"name":"Dominate","permission":{"default":0},"type":"discipline","data":{"id":"dominate","description":"Dominate Description"},"flags":{},"img":"icons/svg/mystery-man.svg","effects":[],"_id":"oZrwpR7xhZsrGkCg"}
+{"name":"Presence","permission":{"default":0},"type":"discipline","data":{"id":"presence","description":"Presence Description"},"flags":{},"img":"icons/svg/mystery-man.svg","effects":[],"_id":"sAoqdGyQN0WhgHJY"}
+{"name":"Fortitude","permission":{"default":0},"type":"discipline","data":{"id":"fortitude","description":"Fortitude Description"},"flags":{},"img":"icons/svg/mystery-man.svg","effects":[],"_id":"y0h1yv067uu7X4I3"}

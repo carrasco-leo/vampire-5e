@@ -1,0 +1,53 @@
+//
+// _message.scss — Vampire 5e
+// ~/styles/chat
+//
+
+@use '../variables' as *;
+
+#chat-log {
+	.message {
+		margin: 6px 12px;
+		color: #191813;
+		border: none;
+		border-radius: 2px;
+		background: transparent url(/ui/parchment.jpg) repeat;
+		box-shadow: 1px 1px 12px black;
+	}
+
+	.message-header {
+		padding: 4px;
+	}
+
+	.sender-image {
+		max-width: 50px;
+		max-height: 50px;
+		margin-right: 4px;
+		border: none;
+	}
+
+	.message-sender {
+		flex: 3;
+		align-self: center;
+		margin: 0;
+		color: $primary-color;
+	}
+
+	.message-metadata {
+		text-align: right;
+	}
+
+	.message-content {
+		padding: 0 8px 4px;
+	}
+
+	.whisper-to, .flavor-text {
+		flex: 0 0 100%;
+		font-size: 12px;
+		line-height: 20px;
+	}
+
+	.whisper-to {
+		color: #690469;
+	}
+}

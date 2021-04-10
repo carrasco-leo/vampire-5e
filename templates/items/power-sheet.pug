@@ -1,0 +1,149 @@
+//-
+//- power-sheet.pug — Vampire 5e
+//- ~/templates/items
+//-
+
+-
+	const Disciplines = disciplines
+		.sort((a, b) => CONFIG.V5E.Disciplines[a].localeCompare(CONFIG.V5E.Disciplines[b]))
+		.reduce((dict, key) => ((dict[key] = CONFIG.V5E.Disciplines[key]) || true) && dict, {});
+
+	const Optgroups = {
+		attributes: Object.keys(CONFIG.V5E.Attributes)
+			.reduce((dict, key) => ((dict['a:'+key] = CONFIG.V5E.Attributes[key]) || true) && dict, {}),
+		skills: Object.keys(CONFIG.V5E.Skills)
+			.map((key) => ({ key: 's:'+key, value: CONFIG.V5E.Skills[key] }))
+			.sort((a, b) => a.value.localeCompare(b.value))
+			.reduce((dict, it) => ((dict[it.key] = it.value) || true) && dict, {}),
+		disciplines: Object.keys(CONFIG.V5E.Disciplines)
+			.filter((key) => disciplines.includes(key))
+			.map((key) => ({ key: 'd:'+key, value: CONFIG.V5E.Disciplines[key] }))
+			.sort((a, b) => a.value.localeCompare(b.value))
+			.reduce((dict, it) => ((dict[it.key] = it.value) || true) && dict, {}),
+	}
+
+	const primary = {
+		[tr('V5E.Disciplines')]: Optgroups.disciplines,
+		[tr('V5E.Attributes')]: Optgroups.attributes,
+	}
+
+	const secondary = {
+		[tr('V5E.Disciplines')]: Optgroups.disciplines,
+		[tr('V5E.Attributes')]: Optgroups.attributes,
+		[tr('V5E.Skills')]: Optgroups.skills,
+	}
+
+mixin roll-pool(dict, value)
+	each options, label in dict
+		-;
+		optgroup(label=(label))
+			each label, key in options
+				-;
+				option(value=(key), selected=(value === key)) #{label}
+
+form.sheet-wrapper.flexcol(class=(cssClass), autocomplete="off")
+	header.sheet-header
+		img.profile(src=(item.img), alt="", data-edit="img")
+		div.sheet-header-details
+			h1.v5e-input-element.charname
+				input.v5e-input(type="text", name="name", value=(item.name))
+				div.v5e-input-border
+
+			ul.sheet-header-summary.flexrow.flex-gap
+				li.v5e-input-element
+					select.v5e-input(name="data.discipline")
+						each value, key in Disciplines
+							-;
+							option(value=(key), selected=(data.discipline === key)) #{value}
+					div.v5e-input-border
+
+				li.v5e-input-element
+					select.v5e-input(name="data.level", data-dtype="Number")
+						each level in Array.from({ length: 5 }, (__, index) => index + 1)
+							-;
+							option(value=(level), selected=(level === data.level))
+								| #{tr('V5E.LevelX', { level })}
+					div.v5e-input-border
+
+	nav.sheet-tabs.tabs
+		a.item(data-tab="description") #{tr('V5E.Description')}
+		if game.user.isGM
+			-;
+			a.item(data-tab="gmnotes") #{tr('V5E.GMNotes')}
+		a.item(data-tab="details") #{tr('V5E.Details')}
+
+	section.sheet-body
+		section.tab.sheet-tab-body.description-tab(data-tab="description")
+			h2 #{tr('V5E.PowerDescription')}
+			| !{editor({ content: data.description, target: 'data.description', button: true, owner, editable })}
+
+			h2 #{tr('V5E.PowerSystem')}
+			| !{editor({ content: data.system, target: 'data.system', button: true, owner, editable })}
+
+		//- include ./tabs/description-tab.partial.pug
+		include ./tabs/gmnotes-tab.partial.pug
+
+		section.tab.sheet-tab-body.details-tab(data-tab="details")
+			div.form-group
+				label #{tr('V5E.Rouses')}
+				input(
+					type="number",
+					name="data.rouses",
+					value=(data.rouses),
+					data-dtype="Number",
+					min="-1",
+					)
+
+			div.form-group
+				label #{tr('V5E.Duration')}
+				input(
+					type="text",
+					name="data.duration",
+					value=(data.duration),
+					)
+
+			div.form-group
+				label #{tr('V5E.RollPool')}
+				div
+					label.form-checkbox
+						input(type="checkbox", data-toggle="data.rollTest", data-toggle-value=(JSON.stringify(['a:strength', 'a:strength'])))
+						| #{tr('V5E.Rollable?')}
+					if data.rollTest
+						-;
+						select(name="data.rollTest")
+							+roll-pool(primary, data.rollTest && data.rollTest[0])
+						| #{tr(' + ')}
+						select(name="data.rollTest")
+							+roll-pool(secondary, data.rollTest && data.rollTest[1])
+
+			div.form-group
+				label #{tr('V5E.OpposedPool')}
+				div
+					label.form-checkbox
+						input(type="checkbox", data-toggle="data.opposedTest", data-toggle-value=(JSON.stringify(['a:strength', 'a:strength'])))
+						| #{tr('V5E.Rollable?')}
+					if data.opposedTest
+						-;
+						select(name="data.opposedTest")
+							+roll-pool(primary, data.opposedTest && data.opposedTest[0])
+						| #{tr(' + ')}
+						select(name="data.opposedTest")
+							+roll-pool(secondary, data.opposedTest && data.opposedTest[1])
+
+			div.form-group
+				label #{tr('V5E.Amalgam')}
+				div
+					label.form-checkbox
+						input(type="checkbox", data-toggle="data.amalgam", data-toggle-value=(JSON.stringify({ id: null, level: 1 })))
+						| #{tr('Yes')}
+					if data.amalgam
+						-;
+						select(name="data.amalgam.id")
+							each value, key in Disciplines
+								-;
+								option(value=(key), selected=(key === data.amalgam.id)) #{value}
+						select(name="data.amalgam.level", data-dtype="Number")
+							each level in Array.from({ length: 5 }, (__, index) => index + 1)
+								-;
+								option(value=(level), selected=(level === data.amalgam.level))
+									| #{tr('V5E.LevelX', { level })}

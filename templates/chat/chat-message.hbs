@@ -1,0 +1,28 @@
+<li class="v5e message flexcol {{cssClass}}" data-message-id="{{message._id}}">
+	<header class="message-header flexrow">
+		{{#if message.flags.img}}
+			<img class="sender-image" src="{{message.flags.img}}" title="{{message.speaker.alias}}"/>
+		{{/if}}
+
+		<div class="flexrow">
+			<h4 class="message-sender with-image">{{alias}}</h4>
+
+			<span class="message-metadata">
+				<time class="message-timestamp">{{timeSince message.timestamp}}</time>
+				{{#if user.isGM}}
+					<a class="button message-delete"><i class="fas fa-trash"></i></a>
+				{{/if}}
+			</span>
+
+			{{#if whisperTo}}
+				<span class="whisper-to">{{localize 'CHAT.To'}}: {{whisperTo}}</span>
+			{{/if}}
+
+			{{#if message.flavor}}
+				<span class="flavor-text">{{{message.flavor}}}</span>
+			{{/if}}
+		</div>
+	</div>
+</header>
+
+<div class="message-content">{{{message.content}}}</div></li>

@@ -1,0 +1,86 @@
+//
+// _list.scss — Vampire 5e
+// ~/styles/core
+//
+
+@use '../variables' as *;
+@use '../fn';
+
+.v5e-list {
+	margin: 0 0 8px;
+	padding: 0;
+	font-size: 13px;
+	list-style: none;
+}
+
+.v5e-list-header {
+	display: flex;
+	align-items: center;
+	height: 28px;
+	margin: 8px 0 0;
+	color: #7a7971;
+	font-weight: 700;
+	line-height: 1;
+	// font: 700 12px/1 "Signika", sans-serif;
+	border: fn.divider();
+	background: rgba(black, 0.04);
+
+	&:first-child {
+		margin: 0;
+	}
+}
+
+.v5e-list-header .v5e-list-title {
+	margin: 0;
+	padding: 0 8px;
+	font-size: 16px;
+	font-family: $condensed-font;
+}
+
+.v5e-list-row .v5e-list-title {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	// padding: 0 8px;
+	line-height: 30px;
+	font-weight: 700;
+
+	&.rollable:hover {
+		.v5e-list-image {
+			background-image: url(/icons/svg/d10-grey.svg) !important;
+			transition: filter 80ms;
+			cursor: pointer;
+
+			&:hover {
+				filter: brightness(0%);
+				// background-image: url(/icons/dice/d10black.svg) !important;
+			}
+		}
+	}
+}
+
+.v5e-list-entry-summary {
+	flex: 0 0 100%;
+	display: none;
+	padding: 0 8px;
+	font-size: 11px;
+
+	&.active {
+		display: block;
+	}
+
+	p {
+		margin: 0 0 11px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.v5e-list-image {
+	flex: 0 0 30px;
+	height: 30px;
+	border: none;
+	background-size: 30px;
+}

@@ -1,0 +1,7 @@
+//-
+//- description-tabs.partial.pug — Vampire 5e
+//- ~/templates/items/tabs
+//-
+
+section.tab.sheet-tab-body.description-tab(data-tab="description")
+	| !{editor({ content: data.description, target: 'data.description', button: true, owner, editable })}

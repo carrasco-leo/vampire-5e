@@ -1,0 +1,48 @@
+//
+// _dialog.scss — Vampire 5e
+// ~/styles/sheets
+//
+
+.reroll-dice-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: stretch;
+	gap: 4px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.reroll-dice-entry {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+
+	&.disabled {
+		cursor: default;
+	}
+
+	.die {
+		width: 24px;
+		height: 24px;
+		color: black;
+		font-size: 16px;
+		font-weight: bold;
+		line-height: 24px;
+		text-align: center;
+		background: transparent url(/icons/svg/d10-grey.svg) center/contain no-repeat;
+
+		&.success {
+			color: #18520b;
+			filter: sepia(0.5) hue-rotate(60deg);
+		}
+
+		&[data-value="10"] {
+			color: #b59000;
+			filter: sepia(0.5) hue-rotate(0);
+		}
+	}
+}

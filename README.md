@@ -1,2 +1,2 @@
 # vampire-5e
-FoundryVTT Sytem for Vampire the Masquarade 5th Edition
+FoundryVTT Sytem for Vampire the Masquerade 5th Edition

@@ -1,0 +1,18 @@
+//-
+//- limited-character-sheet.pug — Vampire 5e
+//- ~/templates/actors
+//-
+
+form.sheet-wrapper.flexcol(class=(cssClass), autocomplete="off")
+	header.sheet-header
+		img.profile.charimg(src=(actor.img), alt="")
+		div.sheet-header-details
+			h1.v5e-input-element.charname
+				input.v5e-input(type="text", name="name", value=(actor.name), disabled)
+				div.v5e-input-border
+
+	nav.sheet-tabs
+
+	section.sheet-body
+		section.tab.sheet-tab-body.description-tab
+			| !{editor({ content: data.description, target: 'data.description', button: false, owner, editable })}

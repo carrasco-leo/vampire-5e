@@ -1,0 +1,154 @@
+{
+	"Actor": {
+		"types": ["character", "coterie"],
+		"templates": {
+			"stats": {
+				"health": {
+					"value": 5,
+					"max": 5,
+					"bars": 1,
+					"expr": "00000"
+				},
+				"willpower": {
+					"value": 5,
+					"max": 5,
+					"expr": "00000"
+				},
+				"humanity": {
+					"value": 5,
+					"max": 10,
+					"stains": 0
+				},
+				"hunger": {
+					"value": 0,
+					"max": 5
+				},
+				"bloodPotency": 0,
+				"stats": {
+					"strength": 0,
+					"dexterity": 0,
+					"stamina": 0,
+					"charisma": 0,
+					"manipulation": 0,
+					"composure": 0,
+					"intelligence": 0,
+					"wits": 0,
+					"resolve": 0
+				}
+			},
+			"skills": {
+				"skills": {
+					"athletics": 0,
+					"brawl": 0,
+					"craft": 0,
+					"drive": 0,
+					"firearms": 0,
+					"larceny": 0,
+					"melee": 0,
+					"stealth": 0,
+					"survival": 0,
+					"animal-ken": 0,
+					"etiquette": 0,
+					"insight": 0,
+					"intimidation": 0,
+					"leadership": 0,
+					"performance": 0,
+					"persuasion": 0,
+					"streetwise": 0,
+					"subterfuge": 0,
+					"academics": 0,
+					"awareness": 0,
+					"finance": 0,
+					"investigation": 0,
+					"medicine": 0,
+					"occult": 0,
+					"politics": 0,
+					"science": 0,
+					"technology": 0
+				}
+			},
+			"disciplines": {
+				"disciplines": {
+				}
+			},
+			"description": {
+				"description": "",
+				"gmnotes": ""
+			}
+		},
+		"character": {
+			"templates": ["stats", "skills", "disciplines", "description"],
+			"xp": {
+				"value": 0,
+				"total": 0
+			},
+			"details": {
+				"clan": "",
+				"bane": "",
+				"sire": "",
+				"generation": "",
+				"concept": "",
+				"ambition": "",
+				"desire": "",
+				"notes": "",
+				"tenets": "",
+				"convictions": ""
+			}
+		},
+		"coterie": {
+			"templates": ["description"],
+			"domain": {
+				"chasse": {
+					"value": 0,
+					"max": 5
+				},
+				"lien": {
+					"value": 0,
+					"max": 5
+				},
+				"portillon": {
+					"value": 0,
+					"max": 5
+				}
+			},
+			"details": {
+				"type": "",
+				"notes": ""
+			}
+		}
+	},
+	"Item": {
+		"types": ["speciality", "power", "feature", "clan"],
+		"templates": {
+			"description": {
+				"description": "",
+				"gmnotes": ""
+			}
+		},
+		"speciality": {
+			"templates": ["description"],
+			"skills": null
+		},
+		"power": {
+			"templates": ["description"],
+			"system": "",
+			"discipline": null,
+			"rollTest": null,
+			"opposedTest": null,
+			"level": 1,
+			"rouses": 0,
+			"duration": "",
+			"amalgam": null
+		},
+		"feature": {
+			"templates": ["description"],
+			"value": 0,
+			"type": null
+		},
+		"clan": {
+			"templates": ["description"],
+			"disciplines": [],
+			"bane": ""
+		}
+	}
+}

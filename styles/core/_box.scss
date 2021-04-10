@@ -1,0 +1,50 @@
+//
+// _box.scss — Vampire 5e
+// ~/styles/core
+//
+
+@use '../variables' as *;
+@use '../fn';
+
+.v5e-box-grid {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 2px;
+}
+
+.v5e-box {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	line-height: 24px;
+	border: 1px solid $divider-color;
+	border-radius: 2px;
+
+	&.rounded {
+		border-radius: 100%;
+	}
+
+	&[data-state="0"] {
+		background-color: $primary-color;
+	}
+
+	&[data-state="1"], &[data-state="2"] {
+		background-repeat: no-repeat;
+		background-color: transparent;
+	}
+
+	&[data-state="1"] {
+		background-image: fn.line-gradient(135deg);
+	}
+
+	&[data-state="2"] {
+		background: fn.line-gradient(135deg), fn.line-gradient(45deg);
+	}
+
+	form:not(.locked) &:hover {
+		border-color: black;
+		box-shadow: 0 0 3px black;
+		cursor: pointer;
+	}
+}

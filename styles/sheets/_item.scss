@@ -1,0 +1,19 @@
+//
+// _item.scss — Vampire 5e
+// ~/styles/sheets
+//
+
+.vampire-5e.item-sheet {
+	min-width: 480px;
+	min-height: 480px;
+
+	header.sheet-header {
+		flex: 0 0 64px;
+
+		.profile {
+			flex: 0 0 64px;
+			max-width: 64px;
+			height: 64px;
+		}
+	}
+}

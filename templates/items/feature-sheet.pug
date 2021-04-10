@@ -1,0 +1,43 @@
+//-
+//- feature-sheet.pug — Vampire 5e
+//- ~/templates/items
+//-
+
+-
+	const Features = Object.keys(CONFIG.V5E.Features)
+		.sort((a, b) => CONFIG.V5E.Features[a].localeCompare(CONFIG.V5E.Features[b]))
+		.reduce((dict, key) => ((dict[key] = CONFIG.V5E.Features[key]) || true) && dict, {});
+
+form.sheet-wrapper.flexcol(class=(cssClass), autocomplete="off")
+	header.sheet-header
+		img.profile(src=(item.img), alt="", data-edit="img")
+		div.sheet-header-details
+			h1.v5e-input-element.charname
+				input.v5e-input(type="text", name="name", value=(item.name))
+				div.v5e-input-border
+
+			ul.sheet-header-summary.flexrow.flex-gap
+				li.v5e-input-element
+					select.v5e-input(name="data.type")
+						option(value="", selected=(!data.type))
+						each value, key in Features
+							-;
+							option(value=(key), selected=(data.type === key)) #{value}
+					div.v5e-input-border
+				li.v5e-input-element
+					select.v5e-input(name="data.value", data-dtype="Number")
+						each value in Array.from({ length: 6 }, (__, index) => index)
+							-;
+							option(value=(value), selected=(data.value === value)) #{value}
+					div.v5e-input-border
+
+	nav.sheet-tabs.tabs
+		a.item(data-tab="description") #{tr('V5E.Description')}
+		if game.user.isGM
+			-;
+			a.item(data-tab="gmnotes") #{tr('V5E.GMNotes')}
+
+
+	section.sheet-body
+		include ./tabs/description-tab.partial.pug
+		include ./tabs/gmnotes-tab.partial.pug

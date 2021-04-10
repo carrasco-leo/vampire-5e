@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"moduleResolution": "node",
+		"target": "es2020",
+		"lib": ["dom", "es6", "es2020"],
+		"types": ["@league-of-foundry-developers/foundry-vtt-types"],
+		"module": "es2020",
+		"importsNotUsedAsValues": "error",
+		"sourceMap": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"incremental": true,
+		"isolatedModules": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"tsBuildInfoFile": "dist/.tsbuildinfo"
+	}
+}

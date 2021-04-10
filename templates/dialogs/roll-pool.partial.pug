@@ -1,0 +1,31 @@
+//-
+//- roll-pool.partial.pug — Vampire 5e
+//- ~/templates/dialogs
+//-
+
+mixin roll-pool(dict, value, length)
+	if length === 1
+		-;
+		each label, key in dict
+			-;
+			option(value=(key), selected=(value === key)) #{label}
+	else
+		each options, label in dict
+			-;
+			optgroup(label=(label))
+				each label, key in options
+					-;
+					option(value=(key), selected=(value === key)) #{label}
+
+if primary
+	-;
+	div.form-group
+		label #{tr('V5E.RollPool')}
+		div
+			select(name="primary")
+				+roll-pool(primaryOptions, primaryValue, primary.length)
+			if secondary
+				-;
+				| #{' + '}
+				select(name="secondary")
+					+roll-pool(secondaryOptions, secondaryValue, secondary.length)

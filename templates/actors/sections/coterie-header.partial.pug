@@ -1,0 +1,40 @@
+//-
+//- coterie-header.partial.pug — Vampire 5e
+//- ~/templates/actors/sections
+//-
+
+img.profile.charimg(src=(actor.img), alt="", data-edit="img")
+div.sheet-header-details
+	h1.v5e-input-element.charname
+		input.v5e-input(type="text", name="name", value=(actor.name))
+		div.v5e-input-border
+
+	ul.sheet-header-summary.flexrow
+		li.v5e-input-element
+			input.v5e-input(
+				type="text",
+				name="data.details.type",
+				value=(data.details.type),
+				placeholder=(tr('V5E.CoterieType')),
+				)
+			div.v5e-input-border
+
+	ul.sheet-header-resources.flexrow
+		li
+			h2 #{tr('V5E.Chasse')}
+			div.v5e-box-grid(data-resource="data.domain.chasse.value")
+				each __ in Array.from({ length: data.domain.chasse.max })
+					-;
+					div.v5e-box.rounded
+		li
+			h2 #{tr('V5E.Lien')}
+			div.v5e-box-grid(data-resource="data.domain.lien.value")
+				each __ in Array.from({ length: data.domain.lien.max })
+					-;
+					div.v5e-box.rounded
+		li
+			h2 #{tr('V5E.Portillon')}
+			div.v5e-box-grid(data-resource="data.domain.portillon.value")
+				each __ in Array.from({ length: data.domain.portillon.max })
+					-;
+					div.v5e-box.rounded

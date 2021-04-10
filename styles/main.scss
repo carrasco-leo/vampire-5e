@@ -1,0 +1,35 @@
+//
+// main.scss — Vampire 5e
+// ~/styles
+//
+
+@forward 'core/input';
+@forward 'core/button';
+@forward 'core/flexbox';
+@forward 'core/box';
+@forward 'core/list';
+
+@forward 'sheets/core';
+@forward 'sheets/actor';
+@forward 'sheets/item';
+@forward 'sheets/dialog';
+
+@forward 'chat/message';
+@forward 'chat/roll-card';
+
+.app.window-app .editor {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	max-height: 100%;
+	word-break: break-word;
+}
+
+.app.window-app .editor-content {
+	scrollbar-width: thin;
+}
+
+a.item.disabled {
+	text-shadow: none;
+	cursor: default;
+}

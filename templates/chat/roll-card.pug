@@ -1,0 +1,62 @@
+//-
+//- roll-card.pug — Vampire 5e
+//- ~/templates/chat
+//-
+
+div.chat-card(data-hide=(hideData))
+	div.card-title #{title}
+
+	if result.difficulty
+		-;
+		div.card-content #[b #{tr('V5E.Difficulty')}]: #{result.difficulty}
+	if result.modifier
+		-;
+		div.card-content #[b #{tr('V5E.Modifier')}]: #{result.modifier}
+
+	div.card-content #[b #{tr('V5E.Successes')}]: #{result.total}
+	if result.difficulty
+		-;
+		div.card-content #[b #{tr('V5E.Margin')}]: #{result.total - result.difficulty}
+
+	if result.difficulty <= 0
+		-;
+		if result.critical
+			-;
+			div.card-content #{tr(result.messyCritical ? 'V5E.PossibleMessyCriticalSuccess' : 'V5E.PossibleCriticalSuccess')}
+
+		if result.bestialFailure
+			-;
+			div.card-content #{tr('V5E.PossibleBestialFailure')}
+
+	else if result.total >= result.difficulty
+		-;
+		if !result.critical
+			-;
+			div.card-content #{tr('V5E.Success')}
+		else if result.messyCritical
+			-;
+			div.card-content #{tr('V5E.MessyCriticalSuccess')}
+		else
+			div.card-content #{tr('V5E.CriticalSuccess')}
+	else
+		if result.bestialFailure
+			-;
+			div.card-content #{tr('V5E.BestialFailure')}
+		else
+			div.card-content #{tr('V5E.Failure')}
+
+	ol.card-dice-pool
+		each die in result.baseDice
+			-;
+			li.die(class=(die.success && 'success'), data-value=(die.result)) #{die.result}
+		else
+			li &mdash;
+
+	if result.hunger
+		-;
+		ol.card-dice-pool
+			each die in result.hungerDice
+				-;
+				li.die(class=(die.success && 'success'), data-value=(die.result)) #{die.result}
+			else
+				li &mdash;

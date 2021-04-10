@@ -1,0 +1,20 @@
+//
+// _fn.scss — Vampire 5e
+// ~/styles
+//
+
+@function line-gradient($angle, $color: black) {
+	@return linear-gradient(
+		$angle,
+		transparent 0%,
+		transparent 43%,
+		$color 45%,
+		$color 55%,
+		transparent 57%,
+		transparent 100%
+	);
+}
+
+@function divider($width: 2px) {
+	@return $width groove #eeede0;
+}

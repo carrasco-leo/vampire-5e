@@ -1,0 +1,16 @@
+//-
+//- item.pug — Vampire 5e
+//- ~/templates/chat
+//-
+
+h2.card-title.toggle-card-content.active #{name}
+div.card-content.card-content-hide !{data.description}
+
+if type === 'power'
+	-;
+	div.card-content #[b Level:] #{data.level}
+	div.card-content #[b Duration:] #{data.duration || '—'}
+	div.card-content #[b Rouses:] #{data.rouses || '—'}
+
+	h2.card-title.toggle-card-content System
+	div.card-content.card-content-hide !{data.system}

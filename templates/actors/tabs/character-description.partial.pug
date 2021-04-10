@@ -1,0 +1,24 @@
+//-
+//- character-description.partial.pug — Vampire 5e
+//- ~/templates/actors/tabs
+//-
+
+
+div.description-tab-grid.flexrow.flexgap
+	div
+		h2.description-tab-title #{tr('V5E.ChronicleTenets')}
+		| !{editor({ content: data.details.tenets, target: 'data.details.tenets', button: true, owner, editable })}
+
+	div
+		h2.description-tab-title #{tr('V5E.TouchstonesConvictions')}
+		| !{editor({ content: data.details.convictions, target: 'data.details.convictions', button: true, owner, editable })}
+
+	div
+		h2.description-tab-title #{tr('V5E.ClanBane')}
+		| !{editor({ content: data.details.bane, target: 'data.details.bane', button: true, owner, editable })}
+
+div.description-tab-grid.description-tab-description.flexrow.flexgap
+	div
+		h2.description-tab-title #{tr('Description')}
+		| !{editor({ content: data.description, target: 'data.description', button: true, owner, editable })}
+

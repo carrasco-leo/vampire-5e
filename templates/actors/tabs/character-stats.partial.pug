@@ -1,0 +1,76 @@
+//-
+//- character-stats.partial.pug — Vampire 5e
+//- ~/templates/actors/tabs
+//-
+
+h2.stats-tab-title #{tr('V5E.Attributes')}
+div.flexrow
+	each dict in [CONFIG.V5E.PhysicalAttributes, CONFIG.V5E.SocialAttributes, CONFIG.V5E.MentalAttributes]
+		-;
+		div.flexcol
+			each label, id in dict
+				-;
+				div.flexrow
+					a.item.attribute-roll(
+						class=(!editable && 'disabled'),
+						data-setup-title=(tr(`V5E.${id.capitalize()}Test`))
+						data-primary-value=(`a:${id}`)
+						data-secondary-value=(`a:${id}`)
+						)
+						| #{label}
+					div.v5e-box-grid(data-resource=(`data.stats.${id}`))
+						div.v5e-box.rounded
+						div.v5e-box.rounded
+						div.v5e-box.rounded
+						div.v5e-box.rounded
+
+-
+	const Skills = [CONFIG.V5E.PhysicalSkills, CONFIG.V5E.SocialSkills, CONFIG.V5E.MentalSkills]
+		.map((dict) => Object.keys(dict)
+			.map((key) => ({ key, value: dict[key] }))
+			.sort((a, b) => a.value.localeCompare(b.value))
+			.reduce((dict, entry) => ((dict[entry.key] = entry.value) || true) && dict, {})
+		);
+
+h2.stats-tab-title #{tr('V5E.Skills')}
+div.flexrow
+	each dict in Skills
+		-;
+		div.flexcol
+			each label, id in dict
+				-;
+				div.flexrow
+					a.item.skill-roll(
+						class=(!editable && 'disabled'),
+						data-setup-title=(tr(`V5E.${id.capitalize()}Test`))
+						data-secondary-value=(`s:${id}`)
+						)
+						| #{label}
+					div.v5e-box-grid(data-resource=(`data.skills.${id}`))
+						div.v5e-box.rounded
+						div.v5e-box.rounded
+						div.v5e-box.rounded
+						div.v5e-box.rounded
+
+div.v5e-list.stats-tab-specialities
+	header.v5e-list-header.flexrow
+		div.v5e-list-title #{tr('V5E.Speciality')}
+
+		div.stats-tab-skill.flexrow #{tr('V5E.Skill')}
+		if editable
+			-;
+			div.stats-tab-controls.flexrow
+				a.item.add-item(data-type="speciality") #[i.fas.fa-plus]
+
+	each item in actor.allSpecialities
+		-;
+		div.v5e-list-row.flexrow(data-id=(item._id))
+			div.v5e-list-title
+				a.item.roll-item(class=(!editable && 'disabled'))
+					| #{item.name}
+			div.stats-tab-skill.flexrow #{CONFIG.V5E.Skills[item.data.skill]}
+			if editable
+				-;
+				div.stats-tab-controls.flexrow
+					a.item.edit-item #[i.fas.fa-edit]
+					a.item.delete-item #[i.fas.fa-trash]

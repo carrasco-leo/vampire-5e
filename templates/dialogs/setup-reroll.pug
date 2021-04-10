@@ -1,0 +1,15 @@
+//-
+//- setup-reroll.pug — Vampire 5e
+//- ~/templates/dialogs
+//-
+
+p #{tr('V5E.RerollDialogText')}
+
+ul.reroll-dice-list
+	each dice, index in result.baseDice
+		-;
+		li
+			label.reroll-dice-entry
+				div.die(class=(dice.success && 'success'), data-value=(dice.result))
+					| #{dice.result}
+				input(type="checkbox", data-index=(index))

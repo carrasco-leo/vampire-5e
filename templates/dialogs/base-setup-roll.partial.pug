@@ -1,0 +1,15 @@
+//-
+//- base-setup-roll.pug — Vampire 5e
+//- ~/templates/dialogs
+//-
+
+div.form-group
+		label #{tr('V5E.Modifier')}
+		input(type="number", name="modifier", value=(modifier))
+
+div.form-group
+	label #{tr('V5E.Difficulty')}
+	select(name="difficulty")
+		each value, key in CONFIG.V5E.Difficulties
+			-;
+			option(value=(key), selected=((+key) === difficulty)) #{value}

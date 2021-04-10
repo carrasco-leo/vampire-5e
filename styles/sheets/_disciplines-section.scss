@@ -1,0 +1,27 @@
+//
+// _disciplines-section.scss — Vampire 5e
+// ~/styles/sheets
+//
+
+.vampire-5e.actor-sheet {
+	.disciplines-tab-ratings {
+		flex: 3;
+
+		.v5e-box-grid {
+			justify-content: flex-start;
+		}
+	}
+
+	.disciplines-tab-level {
+		flex: 0 0 58px;
+		align-self: center;
+		font-weight: 700;
+		text-align: center;
+	}
+
+	.disciplines-tab-controls {
+		flex: 0 0 68px;
+		align-self: center;
+		text-align: center;
+	}
+}

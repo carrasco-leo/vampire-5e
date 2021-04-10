@@ -1,0 +1,9 @@
+//-
+//- gmnotes-tab.partial.pug — Vampire 5e
+//- ~/templates/items/tabs
+//-
+
+if game.user.isGM
+	-;
+	section.tab.sheet-tab-body.gmnotes-tab(data-tab="gmnotes")
+		| !{editor({ content: data.gmnotes, target: 'data.gmnotes', button: true, owner, editable })}

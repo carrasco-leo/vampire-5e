@@ -1,0 +1,123 @@
+//
+// _roll-card.scss — Vampire 5e
+// ~/styles/chat
+//
+
+@use '../variables' as *;
+
+.v5e {
+	.card-title {
+		margin: 0 0 8px;
+		text-transform: uppercase;
+		font-size: 16px;
+		line-height: 20px;
+		border-bottom: 1px solid $divider-color;
+	}
+
+	.card-content + .card-title {
+		margin-top: 8px;
+	}
+
+	.toggle-card-content {
+		cursor: pointer;
+
+		&::before {
+			content: '+';
+			display: inline-block;
+			width: 16px;
+		}
+
+		&.active::before {
+			content: '- ';
+		}
+
+		&:not(.active) + .card-content-hide {
+			display: none;
+		}
+	}
+
+	.card-dice-pool {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 1px;
+		margin: 8px 0 0;
+		padding: 0;
+		list-style: none;
+
+		+ .card-dice-pool {
+			padding-top: 8px;
+			border-top: 1px solid $divider-color;
+		}
+
+		.die {
+			width: 24px;
+			height: 24px;
+			color: black;
+			font-size: 16px;
+			font-weight: bold;
+			line-height: 24px;
+			text-align: center;
+			background: transparent url(/icons/svg/d10-grey.svg) center/contain no-repeat;
+
+			&.success {
+				color: #18520b;
+				filter: sepia(0.5) hue-rotate(60deg);
+			}
+
+			&[data-value="10"] {
+				color: #b59000;
+				filter: sepia(0.5) hue-rotate(0);
+			}
+
+			&.mark-1[data-value="1"] {
+				color: #a80202;
+				filter: sepia(50%) hue-rotate(-15deg);
+			}
+		}
+	}
+
+	.reroll-dice-list {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: stretch;
+		gap: 4px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.reroll-dice-entry {
+		display: flex;
+		flex-flow: column;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+
+		&.disabled {
+			cursor: default;
+		}
+
+		.die {
+			width: 24px;
+			height: 24px;
+			color: black;
+			font-size: 16px;
+			font-weight: bold;
+			line-height: 24px;
+			text-align: center;
+			background: transparent url(/icons/svg/d10-grey.svg) center/contain no-repeat;
+
+			&.success {
+				color: #18520b;
+				filter: sepia(0.5) hue-rotate(60deg);
+			}
+
+			&[data-value="10"] {
+				color: #b59000;
+				filter: sepia(0.5) hue-rotate(0);
+			}
+		}
+	}
+}

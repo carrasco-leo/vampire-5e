@@ -1,0 +1,46 @@
+//-
+//- character-features.partial.pug — Vampire 5e
+//- ~/templates/actors/tabs
+//-
+
+-
+	const entries = [
+		{ type: 'background', title: 'V5E.Backgrounds' },
+		{ type: 'merit', title: 'V5E.Merits' },
+		{ type: 'flaw', title: 'V5E.Flaws' },
+	];
+
+div.v5e-list
+	each entry in entries
+		-;
+		header.v5e-list-header.flexrow
+			div.v5e-list-title #{tr(entry.title)}
+			if editable
+				-;
+				div.features-tab-controls.flexrow
+					a.item.add-item(
+						data-type="feature",
+						data-name=(entry.type.capitalize()),
+						data-data.type=(entry.type),
+						)
+						i.fas.fa-plus
+
+		each feature in features[entry.type]
+			-;
+			div.v5e-list-row.flexrow(data-id=(feature.id))
+				div.v5e-list-title.rollable
+					div.v5e-list-image.roll-item(style=(`background-image: url('${feature.img}')`))
+					a.item #{feature.name}
+
+				div.features-tab-ratings.flexrow
+					div.v5e-box-grid(data-item-resource="data.value")
+						each __ in Array.from({ length: 5 })
+							-;
+							div.v5e-box.rounded
+
+				if editable
+					-;
+					div.features-tab-controls.flexrow
+						a.item.post-item #[i.fas.fa-comment]
+						a.item.edit-item #[i.fas.fa-edit]
+						a.item.delete-item #[i.fas.fa-trash]

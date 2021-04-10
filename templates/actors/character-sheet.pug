@@ -1,0 +1,42 @@
+//-
+//- character-sheet.pug — Vampire 5e
+//- ~/templates/actors
+//-
+
+form.sheet-wrapper.flexcol(class=(cssClass), autocomplete="off")
+	header.sheet-header
+		include sections/character-header.partial.pug
+
+	nav.sheet-tabs.tabs
+		a.item(data-tab="stats") #{tr('V5E.Stats')}
+		a.item(data-tab="disciplines") #{tr('V5E.Disciplines')}
+		a.item(data-tab="features") #{tr('V5E.Features')}
+		a.item(data-tab="description") #{tr('V5E.Description')}
+		a.item(data-tab="notes") #{tr('V5E.Notes')}
+		if game.user.isGM
+			-;
+			a.item(data-tab="gmnotes") #{tr('V5E.GMNotes')}
+
+	section.sheet-body
+		section.tab.sheet-tab-body.stats-tab(data-tab="stats")
+			include tabs/character-stats.partial.pug
+
+		section.tab.sheet-tab-body.disciplines-tab(data-tab="disciplines")
+			include tabs/character-disciplines.partial.pug
+
+		section.tab.sheet-tab-body.features-tab(data-tab="features")
+			include tabs/character-features.partial.pug
+
+		section.tab.sheet-tab-body.description-tab(data-tab="description")
+			include tabs/character-description.partial.pug
+
+		section.tab.sheet-tab-body.notes-tab(data-tab="notes")
+			include tabs/character-notes.partial.pug
+
+		if game.user.isGM
+			-;
+			section.tab.sheet-tab-body.gmnotes-tab(data-tab="gmnotes")
+				| !{editor({ content: data.gmnotes, target: 'data.gmnotes', button: true, owner, editable })}
+
+	footer.sheet-footer
+		include sections/character-footer.partial.pug
