@@ -57,26 +57,7 @@ Hooks.once('init', () => {
 	CONFIG.ChatMessage.template = templatePath('chat/chat-message');
 
 	game.v5e = {
-
 	}
 });
 
 registerHooks();
-
-// devmode: active tested tab
-Hooks.once('renderSidebar', () => {
-	const tabId = 'compendium';
-	const selector = `#sidebar-tabs [data-tab="${tabId}"]`;
-	const tab: HTMLElement = document.querySelector(selector);
-	// tab.click();
-
-});
-
-Hooks.once('ready', () => {
-	const actor = game.actors.get('z18HH94hZNH1xuSj');
-	// actor.sheet.render(true);
-	// actor
-	// 	.getOwnedItem('joLWJLvXzwTtaYZd')
-	//  	.getOwnedItem('QIj9LYv9jjh2Us3J')
-	// 	.sheet.render(true)
-});
