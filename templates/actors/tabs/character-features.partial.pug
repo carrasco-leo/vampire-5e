@@ -27,8 +27,8 @@ div.v5e-list
 
 		each feature in features[entry.type]
 			-;
-			div.v5e-list-row.flexrow(data-id=(feature.id))
-				div.v5e-list-title.rollable
+			div.v5e-list-row.item-entry.flexrow(data-id=(feature.id))
+				div.v5e-list-title(class=(editable && 'rollable'))
 					div.v5e-list-image.roll-item(style=(`background-image: url('${feature.img}')`))
 					a.item #{feature.name}
 
@@ -44,3 +44,4 @@ div.v5e-list
 						a.item.post-item #[i.fas.fa-comment]
 						a.item.edit-item #[i.fas.fa-edit]
 						a.item.delete-item #[i.fas.fa-trash]
+				div.item-summary !{feature.data.data.description}

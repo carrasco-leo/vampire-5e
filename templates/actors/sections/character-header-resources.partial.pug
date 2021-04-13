@@ -20,6 +20,7 @@ ul.sheet-header-resources.flexrow
 	li
 		h2
 			a.custom-roll.item(
+				class=(!editable && 'disabled'),
 				data-pool=(data.willpower.value),
 				data-title=(tr('V5E.WillpowerTest')),
 				data-setup-title=(tr('V5E.WillpowerTest')),
