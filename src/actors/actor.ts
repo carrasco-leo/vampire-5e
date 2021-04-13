@@ -101,7 +101,7 @@ export class V5eActor<I extends V5eItem = V5eItem> extends Actor<ActorData, I/*I
 		options?: any,
 	): Promise<any> {
 		const actorData = this.data.data;
-		const itemData = item.data;
+		const itemData = expandObject(item).data || {};
 
 		if (embeddedName === 'OwnedItem') {
 			if (this.data.type !== 'character' && item.type !== 'feature') {
