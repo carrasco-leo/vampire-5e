@@ -19,10 +19,9 @@ div.flexrow
 						)
 						| #{label}
 					div.v5e-box-grid(data-resource=(`data.stats.${id}`))
-						div.v5e-box.rounded
-						div.v5e-box.rounded
-						div.v5e-box.rounded
-						div.v5e-box.rounded
+						each __ in Array.from({ length: 5 })
+							-;
+							div.v5e-box.rounded
 
 -
 	const Skills = [CONFIG.V5E.PhysicalSkills, CONFIG.V5E.SocialSkills, CONFIG.V5E.MentalSkills]
@@ -47,10 +46,9 @@ div.flexrow
 						)
 						| #{label}
 					div.v5e-box-grid(data-resource=(`data.skills.${id}`))
-						div.v5e-box.rounded
-						div.v5e-box.rounded
-						div.v5e-box.rounded
-						div.v5e-box.rounded
+						each __ in Array.from({ length: 5 })
+							-;
+							div.v5e-box.rounded
 
 div.v5e-list.stats-tab-specialities
 	header.v5e-list-header.flexrow

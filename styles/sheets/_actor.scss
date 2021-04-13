@@ -155,4 +155,9 @@
 			height: 100%;
 		}
 	}
+
+	.stats-tab, .features-tab, .disciplines-tab {
+		overflow: auto;
+		scrollbar-width: thin;
+	}
 }
