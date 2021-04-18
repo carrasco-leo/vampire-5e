@@ -6,25 +6,14 @@
 const gulp = require('gulp');
 const pug = require('pug');
 const through2 = require('through2');
+const path = require('path');
 
-function enhance(code) {
+function enhance(filePath, code) {
+	const relative = path.relative('.', filePath);
+	const parent = '../'.repeat(relative.replace(/\\/g, '/').split('/').length - 1);
+
 	return `
-function tr(id, params) {
-	if (params) return game.i18n.format(id, params);
-	return game.i18n.localize(id);
-}
-
-function editor(options) {
-	const target = options.target;
-	if (!target) throw new Error('You must defined the name of a target field.');
-	const owner = !!options.owner;
-	const content = TextEditor.enrichHTML(options.content || '', { secrets: owner, entities: true });
-	let html = \`<div class="editor-content" data-edit="\${target}">\${content}</div>\`;
-	const button = !!options.button;
-	const editable = !!options.editable;
-	if (button && editable) html += '<a class="editor-edit"><i class="fas fa-edit"></i></a>';
-	return \`<div class="editor">\${html}</div>\`;
-}
+import { tr, editor } from '${parent}system/render-helper.js';
 
 ${code}
 
@@ -43,7 +32,7 @@ function transpile(options = {}) {
 
 			try {
 				const code = pug.compileClient(file.contents.toString(), options);
-				file.contents = Buffer.from(enhance(code));
+				file.contents = Buffer.from(enhance(file.path, code));
 			} catch (error) {
 				return cb(error);
 			}
