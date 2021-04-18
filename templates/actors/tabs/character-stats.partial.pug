@@ -13,9 +13,9 @@ div.flexrow
 				div.flexrow
 					a.item.attribute-roll(
 						class=(!editable && 'disabled'),
-						data-setup-title=(tr(`V5E.${id.capitalize()}Test`))
-						data-primary-value=(`a:${id}`)
-						data-secondary-value=(`a:${id}`)
+						data-setup-title=(tr(`V5E.${id.capitalize()}Test`)),
+						data-primary-value=(`a:${id}`),
+						data-secondary-value=(`a:${id}`),
 						)
 						| #{label}
 					div.v5e-box-grid(data-resource=(`data.stats.${id}`))
@@ -41,8 +41,8 @@ div.flexrow
 				div.flexrow
 					a.item.skill-roll(
 						class=(!editable && 'disabled'),
-						data-setup-title=(tr(`V5E.${id.capitalize()}Test`))
-						data-secondary-value=(`s:${id}`)
+						data-setup-title=(tr(`V5E.${id.capitalize()}Test`)),
+						data-secondary-value=(`s:${id}`),
 						)
 						| #{label}
 					div.v5e-box-grid(data-resource=(`data.skills.${id}`))

@@ -20,7 +20,7 @@ export class V5eCharacterSheet extends V5eActorSheet {
 				{
 					navSelector: '.sheet-tabs',
 					contentSelector: '.sheet-body',
-					initial: 'stats',
+					initial: 'blood',
 				},
 			],
 			scrollY: [

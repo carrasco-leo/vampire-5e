@@ -10,6 +10,7 @@ form.sheet-wrapper.flexcol(class=(cssClass), autocomplete="off")
 	nav.sheet-tabs.tabs
 		a.item(data-tab="stats") #{tr('V5E.Stats')}
 		a.item(data-tab="disciplines") #{tr('V5E.Disciplines')}
+		a.item(data-tab="blood") #{tr('V5E.Blood')}
 		a.item(data-tab="features") #{tr('V5E.Features')}
 		a.item(data-tab="description") #{tr('V5E.Description')}
 		a.item(data-tab="notes") #{tr('V5E.Notes')}
@@ -32,6 +33,9 @@ form.sheet-wrapper.flexcol(class=(cssClass), autocomplete="off")
 
 		section.tab.sheet-tab-body.notes-tab(data-tab="notes")
 			include tabs/character-notes.partial.pug
+
+		section.tab.sheet-tab-body.blood-tab(data-tab="blood")
+			include tabs/character-blood.partial.pug
 
 		if game.user.isGM
 			-;

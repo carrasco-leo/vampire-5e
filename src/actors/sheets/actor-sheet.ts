@@ -325,6 +325,15 @@ export abstract class V5eActorSheet extends ActorSheet<V5eActorSheetData, V5eAct
 		html.on('click', '.custom-roll', (event) => {
 			const target = (event.target as Element).closest('.custom-roll') as HTMLElement;
 			const options: V5eRollOptions = { ...target.dataset };
+			options.hunger = !!options.hunger;
+
+			if (target.dataset.primary) {
+				options.primary = target.dataset.primary.split(',') as any;
+			}
+
+			if (target.dataset.secondary) {
+				options.secondary = target.dataset.secondary.split(',') as any;
+			}
 
 			this.actor.setupRoll(options)
 				.then((setup) => this.actor.simpleRoll(setup))

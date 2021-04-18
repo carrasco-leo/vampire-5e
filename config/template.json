@@ -92,7 +92,8 @@
 				"notes": "",
 				"tenets": "",
 				"convictions": ""
-			}
+			},
+			"chasse": [null, null]
 		},
 		"coterie": {
 			"templates": ["description"],

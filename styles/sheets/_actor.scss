@@ -18,6 +18,11 @@
 			width: calc(100% - 105px);
 		}
 	}
+
+	nav.sheet-tabs .item {
+		margin-left: 16px;
+		margin-right: 16px;
+	}
 }
 
 .vampire-5e.coterie-sheet {
@@ -126,14 +131,14 @@
 		}
 	}
 
-	.description-tab-title {
+	.blood-tab-grid-title, .description-tab-title {
 		margin: 0;
 		padding: 0 8px;
 		font-size: 16px;
 		border: none;
 	}
 
-	.description-tab-grid  {
+	.blood-tab-grid, .description-tab-grid  {
 		margin: 0 0 8px;
 		font-size: 12px;
 		overflow: hidden;
@@ -141,16 +146,25 @@
 		> * {
 			display: flex;
 			flex-flow: column;
-			height: 180px;
 			padding: 4px 0;
 			border: 1px solid #b5b3a4;
 			border-radius: 4px;
 			overflow: hidden;
+
+			> p {
+				padding: 0 8px;
+			}
 		}
 
 		.editor-content {
 			padding: 0 8px;
 			text-align: justify;
+		}
+	}
+
+	.description-tab-grid {
+		> * {
+			height: 180px;
 		}
 	}
 
@@ -165,5 +179,17 @@
 	.stats-tab, .features-tab, .disciplines-tab {
 		overflow: auto;
 		scrollbar-width: thin;
+	}
+
+	.blood-tab-chasse {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 8px;
+		margin: 8px 0 16px;
+
+		a.roll-button {
+			font-size: 32px;
+		}
 	}
 }

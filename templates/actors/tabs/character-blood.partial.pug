@@ -1,0 +1,87 @@
+//-
+//- character-blood.partial.pug — Vampire 5e
+//- ~/templates/actors/tabs
+//-
+
+mixin blood-chasse-attributes
+	-
+		const Attributes = Object.keys(CONFIG.V5E.Attributes)
+			.reduce((dict, key) => ((dict['a:'+key] = CONFIG.V5E.Attributes[key]) || true) && dict, {});
+	each value, key in Attributes
+		-;
+		option(value=(key), selected=(data.chasse[0] === key)) #{value}
+
+mixin blood-chasse-skills
+	-
+		const Skills = Object.keys(CONFIG.V5E.Skills)
+			.sort((a, b) => CONFIG.V5E.Skills[a].localeCompare(CONFIG.V5E.Skills[b]))
+			.reduce((dict, key) => ((dict['s:'+key] = CONFIG.V5E.Skills[key]) || true) && dict, {});
+	each value, key in Skills
+		-;
+		option(value=(key), selected=(data.chasse[1] === key)) #{value}
+
+
+div.blood-tab-chasse
+	label #{tr('V5E.Chasse')}
+	select(name="data.chasse"): +blood-chasse-attributes
+	| +
+	select(name="data.chasse"): +blood-chasse-skills
+	if editable && data.chasse[0] && data.chasse[1]
+		-;
+		a.roll-button.custom-roll(
+			data-setup-title=(tr('V5E.ChasseTest')),
+			data-primary="attributes",
+			data-secondary="skills",
+			data-primary-value=(data.chasse[0]),
+			data-secondary-value=(data.chasse[1]),
+			data-hunger="true",
+		)
+
+div.blood-tab-grid.flexrow.flexgap
+	div
+		h2.blood-tab-grid-title #{tr('V5E.BloodSurge')}
+		p #{tr('V5E.BloodSurgeHint', { value: Math.ceil(data.bloodPotency / 2) })}
+
+	div
+		h2.blood-tab-grid-title #{tr('V5E.MendAmount')}
+		if data.bloodPotency >= 4 && data.bloodPotency <= 7
+			-;
+			p #{tr('V5E.MendAmountHint', { value: 3 })}
+		else if data.bloodPotency < 4
+			-;
+			p #{tr('V5E.MendAmountHint', { value: Math.floor(data.bloodPotency / 2) + 1 })}
+		else
+			p #{tr('V5E.MendAmountHint', { value: Math.floor(data.bloodPotency / 2) })}
+
+	div
+		h2.blood-tab-grid-title #{tr('V5E.PowerBonus')}
+		p #{tr('V5E.PowerBonusHint', { value: Math.floor(data.bloodPotency / 2) })}
+
+
+div.blood-tab-grid.flexrow.flexgap
+	div
+		h2.blood-tab-grid-title #{tr('V5E.RouseReroll')}
+		p #{tr('V5E.RouseRerollHint', { value: Math.ceil(data.bloodPotency / 2) })}
+
+	div
+		h2.blood-tab-grid-title #{tr('V5E.FeedingPenalty')}
+		if data.bloodPotency <= 1
+			-;
+			p #{tr('V5E.FeedingPenaltyNone')}
+		else if data.bloodPotency === 2
+			-;
+			p #{tr('V5E.FeedingPenaltyHalfHunger')}
+		else
+			p #{tr('V5E.FeedingPenaltyNoHunger')}
+
+			if data.bloodPotency >= 4
+				-;
+				p #{tr('V5E.FeedingPenaltyLessHunger', { value: Math.ceil((data.bloodPotency - 1) / 4) })}
+
+				if data.bloodPotency >= 5
+					-;
+					p #{tr('V5E.FeedingPenaltyMustKill', { value: Math.ceil((data.bloodPotency - 1) / 3) })}
+
+	div
+		h2.blood-tab-grid-title #{tr('V5E.BaneSeverity')}
+		p #{Math.floor(data.bloodPotency / 2)}
