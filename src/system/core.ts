@@ -81,7 +81,6 @@ export interface Resource {
 
 export interface ResourceStates extends Resource {
 	expr: string;
-	bars?: number;
 }
 
 export interface ResourceHumanity extends Resource {

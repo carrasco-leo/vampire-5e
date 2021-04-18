@@ -15,6 +15,10 @@
 	"V5E.Stain": "Stain",
 	"V5E.Remorse": "Remorse",
 
+	"V5E.HealthEdit": "Edit Health",
+	"V5E.WillpowerEdit": "Edit Willpower",
+	"V5E.NewMaxValue": "New Max Value",
+
 	"V5E.ResourceStatesIncreaseSize": "Increase size",
 	"V5E.ResourceStatesIncreaseSize?": "Do you need another bar?",
 	"V5E.DeleteItem": "Delete Confirmation",

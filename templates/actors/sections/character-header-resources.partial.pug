@@ -6,8 +6,15 @@
 ul.sheet-header-resources.flexrow
 	li
 		h2 #{tr('V5E.Health')}
+			if editable
+				-;
+				a.item.edit-resource(
+					data-resource-id="data.health",
+					data-title=(tr('V5E.HealthEdit')),
+				)
+					i.fas.fa-edit
 		div.v5e-box-grid(data-resource-states="data.health")
-			each __ in Array.from({ length: 10 * data.health.bars })
+			each __ in Array.from({ length: 10 * Math.ceil(data.health.max / 10) })
 				-;
 				div.v5e-box
 		if editable
@@ -26,8 +33,15 @@ ul.sheet-header-resources.flexrow
 				data-setup-title=(tr('V5E.WillpowerTest')),
 				)
 				| #{tr('V5E.Willpower')}
+			if editable
+				-;
+				a.item.edit-resource(
+					data-resource-id="data.willpower",
+					data-title=(tr('V5E.WillpowerEdit')),
+					)
+					i.fas.fa-edit
 		div.v5e-box-grid(data-resource-states="data.willpower")
-			each __ in Array.from({ length: 10 })
+			each __ in Array.from({ length: 10 * Math.ceil(data.willpower.max / 10) })
 				-;
 				div.v5e-box
 		if editable

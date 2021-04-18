@@ -6,7 +6,6 @@
 				"health": {
 					"value": 5,
 					"max": 5,
-					"bars": 1,
 					"expr": "00000"
 				},
 				"willpower": {

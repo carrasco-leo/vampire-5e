@@ -153,9 +153,7 @@ export abstract class V5eActorSheet extends ActorSheet<V5eActorSheetData, V5eAct
 			const index = $(tracker).find('.v5e-box').index(target);
 			const state = +target.dataset.state;
 
-			if (event.ctrlKey) {
-				return this._adjustResourceTracker(id, resource, index);
-			} else if (index >= resource.max) {
+			if (index >= resource.max) {
 				return;
 			}
 
@@ -275,46 +273,49 @@ export abstract class V5eActorSheet extends ActorSheet<V5eActorSheetData, V5eAct
 			const nextValue = (value === index + 1) ? value - 1 : index + 1;
 			item.update({ [id]: nextValue });
 		});
-	}
 
-	/**
-	 * Adjust the max value of a resource
-	 */
-	protected async _adjustResourceTracker(id: string, resource: ResourceStates, index: number): Promise<void> {
-		const nextMax = index + 1;
-		if (resource.max === nextMax) {
-			resource.expr = resource.expr.slice(0, -1);
-			resource.max--;
-		} else if (resource.max > nextMax) {
-			resource.expr.slice(0, nextMax);
-			resource.max = nextMax;
-		} else {
-			resource.expr += '0'.repeat(nextMax - resource.max);
-			resource.max = nextMax;
-		}
+		html.on('click', '.edit-resource', async (event) => {
+			const target = (event.target as HTMLElement).closest<HTMLElement>('[data-resource-id]');
+			const key = target.dataset.resourceId;
+			const resource: ResourceStates = getProperty(this.actor.data, target.dataset.resourceId);
 
-		if (resource.bars) {
-			const bars = Math.ceil(resource.max / 10);
-			if (bars < resource.bars) {
-				resource.bars = bars;
-			} else if (resource.max === resource.bars * 10) {
-				const yes = await Dialog.confirm({
-					title: game.i18n.localize('V5E.ResourceStatesIncreaseSize'),
-					content: '<p>'+game.i18n.localize('V5E.ResourceStatesIncreaseSize?')+'</p>',
-					defaultYes: false,
+			try {
+				const newValue = await Dialog.prompt({
+					title: target.dataset.title || game.i18n.localize('Edit'),
+					content: `<form>
+						<div class="form-group">
+							<label>${game.i18n.localize('V5E.NewMaxValue')}</label>
+							<input type="number" name="newMax" min="1" value="${resource.max}" />
+						</div>
+					</form>`,
+					label: game.i18n.localize('Edit'),
+					callback: (html) => {
+						const input = html.find<HTMLInputElement>('[name="newMax"]').get(0);
+						return +input.value || resource.max;
+					},
 				});
 
-				if (yes) {
-					resource.bars = bars + 1;
+				if (newValue !== resource.max) {
+					const value = duplicate(resource) as ResourceStates;
+					let expr = value.expr.split('').sort();
+
+					if (value.expr.length > newValue) {
+						expr = expr.slice(0, newValue);
+					} else if (value.expr.length < newValue) {
+						expr.unshift('0'.repeat(newValue - value.expr.length));
+					}
+
+					value.value = expr.reduce((total, ch) => total + +(ch === '0'), 0);
+					value.max = newValue;
+					value.expr = expr.join('');
+
+					this.actor.update({ [key]: value });
 				}
+			} catch (error) {
+				// Dialog.prompt reject if the windows is close in any other way than
+				// clicking on the button (=> cancel the action)
 			}
-		}
-
-		resource.value = resource.expr
-			.split('')
-			.reduce((x, y) => x + (y !== '0' ? 0 : 1), 0);
-
-		await this.actor.update({ [id]: resource });
+		});
 	}
 
 	/**
