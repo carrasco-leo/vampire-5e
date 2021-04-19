@@ -3,11 +3,11 @@
 // ~/src/items
 //
 
-import type { LocalsObject } from 'pug';
-
 import type { V5eItem } from './item';
+import type { V5eItemSheetData } from './item-data';
+import { BaseItemSheet } from './base-item-sheet';
 
-export class V5eItemSheet<Data extends object = {}> extends ItemSheet<Data, V5eItem> {
+export class V5eItemSheet<T extends object> extends BaseItemSheet<T, V5eItem> {
 	/** @override */
 	static get defaultOptions(): BaseEntitySheet.Options {
 		const options = super.defaultOptions;
@@ -23,27 +23,6 @@ export class V5eItemSheet<Data extends object = {}> extends ItemSheet<Data, V5eI
 				},
 			],
 		});
-	}
-
-	/**
-	 * Returns a function to render the inner content
-	 */
-	get pug(): (locals?: LocalsObject) => string {
-		return null;
-	}
-
-	/** @override */
-	async _renderInner(data: any, options?: Application.RenderOptions): Promise<JQuery<HTMLElement>> {
-		if (!this.pug) {
-			return super._renderInner(data, options);
-		}
-
-		const html = $(this.pug(data));
-
-		// FormApplication::_renderInner
-		this.form = html[0] instanceof HTMLFormElement ? html[0] : html.find('form')[0];
-
-		return html;
 	}
 
 	activateListeners(html: JQuery<HTMLElement>) {

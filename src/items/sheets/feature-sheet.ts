@@ -7,7 +7,7 @@ import { V5eItemSheet } from '../item-sheet';
 
 import FeatureSheetPug from '../../templates/items/feature-sheet.pug';
 
-export class V5eFeatureItemSheet extends V5eItemSheet {
+export class V5eFeatureItemSheet extends V5eItemSheet<{}> {
 	/** @override */
-	get pug() { return FeatureSheetPug; }
+	get innerRenderFn(): (data: any) => string { return FeatureSheetPug; }
 }

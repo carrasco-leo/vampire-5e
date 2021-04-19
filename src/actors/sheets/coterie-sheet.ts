@@ -3,12 +3,13 @@
 // ~/src/actors/sheets
 //
 
-import { V5eActorSheet } from './actor-sheet';
+import { V5eActorSheet } from '../actor-sheet';
+import type { V5eCoterieSheetData } from '../actor-data';
 
 import CoterieSheetPug from '../../templates/actors/coterie-sheet.pug';
 import LimitedCoterieSheetPug from '../../templates/actors/limited-coterie-sheet.pug';
 
-export class V5eCoterieSheet extends V5eActorSheet {
+export class V5eCoterieSheet extends V5eActorSheet<V5eCoterieSheetData> {
 	/** @override */
 	static get defaultOptions() {
 		const options = super.defaultOptions;
@@ -27,7 +28,7 @@ export class V5eCoterieSheet extends V5eActorSheet {
 	}
 
 	/** @override */
-	get pug() {
+	get innerRenderFn(): (data: any) => string {
 		if (this.actor.limited && !game.user.isGM) {
 			return LimitedCoterieSheetPug;
 		}

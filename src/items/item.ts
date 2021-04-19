@@ -3,32 +3,13 @@
 // ~/src/items
 //
 
+import type { V5eItemData, V5eItemPreparedData } from './item-data';
+
 import type { V5eActor } from '../actors/actor';
 import { V5eRolls } from '../system/rolls';
 import { V5eUtility } from '../system/utility';
 
 import ChatItemPug from '../templates/chat/item.pug';
-
-export type V5eItemData = Item.Data<{
-	description: string;
-	gmnotes: string;
-
-	skill: string;
-
-	discipline: string;
-	rollTest: string[]|null;
-	opposedTest: string[]|null;
-	level: number;
-	rouses: number;
-	duration: string;
-	amalgam: { id: string; level: number; }|null;
-
-	type: string;
-	value: number;
-}>;
-
-export interface V5eItemPreparedData extends V5eItemData {
-}
 
 export class V5eItem extends Item<V5eItemData, V5eItemPreparedData> {
 	get actor() { return super.actor as V5eActor<this>; }

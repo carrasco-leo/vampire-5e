@@ -7,7 +7,7 @@ import { V5eItemSheet } from '../item-sheet';
 
 import ClanSheetPug from '../../templates/items/clan-sheet.pug';
 
-export class V5eClanItemSheet extends V5eItemSheet {
+export class V5eClanItemSheet extends V5eItemSheet<{}> {
 	/** @override */
-	get pug() { return ClanSheetPug; }
+	get innerRenderFn(): (data: any) => string { return ClanSheetPug; }
 }

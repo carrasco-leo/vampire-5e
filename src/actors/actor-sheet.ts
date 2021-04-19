@@ -3,44 +3,18 @@
 // ~/src/actors/sheets
 //
 
-import type { LocalsObject } from 'pug';
+import type { V5eActor, V5eRollOptions } from './actor';
+import { BaseActorSheet } from './base-actor-sheet';
 
-import type { V5eActor, V5eRollOptions, V5eActorData } from '../actor';
-import type { Dict, ResourceStates, ResourceHumanity } from '../../system/core';
+import type { Dict, ResourceStates, ResourceHumanity } from '../system/core';
 
-export interface V5eActorSheetData extends ActorSheet.Data<V5eActor> {
-	powers: Dict<Item[]>;
-	features: Dict<Item[]>;
-}
-
-export abstract class V5eActorSheet extends ActorSheet<V5eActorSheetData, V5eActor> {
+export abstract class V5eActorSheet<T extends object> extends BaseActorSheet<T, V5eActor> {
 	/** @override */
 	static get defaultOptions(): BaseEntitySheet.Options {
 		const options = super.defaultOptions;
 		return mergeObject(options, {
 			classes: ['vampire-5e', 'sheet', 'actor-sheet'],
 		});
-	}
-
-	/**
-	 * Returns a function to render the inner content
-	 */
-	get pug(): (locals?: LocalsObject) => string {
-		return null;
-	}
-
-	/** @override */
-	async _renderInner(data: any, options?: Application.RenderOptions): Promise<JQuery<HTMLElement>> {
-		if (!this.pug) {
-			return super._renderInner(data, options);
-		}
-
-		const html = $(this.pug(data));
-
-		// FormApplication::_renderInner
-		this.form = html[0] instanceof HTMLFormElement ? html[0] : html.find('form')[0];
-
-		return html;
 	}
 
 	/** @override */

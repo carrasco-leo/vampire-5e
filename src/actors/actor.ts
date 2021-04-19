@@ -3,6 +3,8 @@
 // ~/src/actors
 //
 
+import type { V5eActorData, V5eActorPreparedData } from './actor-data';
+
 import type {
 	TemplateOrPug,
 	CardOptions,
@@ -15,7 +17,8 @@ import type {
 	RollResult,
 	RollMode,
 } from '../system/core';
-import type { V5eItem, V5eItemData } from '../items/item';
+import type { V5eItem } from '../items/item';
+import type { V5eItemData } from '../items/item-data';
 import { V5eRollDialog } from '../system/roll-dialog';
 import { V5eRolls } from '../system/rolls';
 import { V5eUtility } from '../system/utility';
@@ -47,30 +50,9 @@ export interface V5eRollOptions {
 	applyFn?: string[];
 }
 
-export interface V5eActorData {
-	health: ResourceStates;
-	willpower: ResourceStates;
-	humanity: ResourceHumanity;
-	hunger: Resource;
-	bloodPotency: number;
-	stats: Dict<number>;
-	skills: Dict<number>;
-	disciplines: Dict<number>;
-	description: string;
-	gmnotes: string;
-}
-
-interface ActorData extends Actor.Data<V5eActorData, V5eItemData> {
-}
-
-interface ActorPreparedData extends ActorData {
-	allSpecialities: Item[];
-	specialities: Dict<Item[]>;
-	powers: Dict<Item[]>;
-	features: Dict<Item[]>;
-}
-
-export class V5eActor<I extends V5eItem = V5eItem> extends Actor<ActorData, I/*Item<Actor.OwnedItemData<ActorData>>*/, ActorPreparedData> {
+export class V5eActor<I extends V5eItem = V5eItem>
+	extends Actor<Actor.Data<V5eActorData, V5eItemData>, I, V5eActorPreparedData>
+{
 	/** @override */
 	static async create(
 		data: DeepPartial<V5eActor['_data']>|ReadonlyArray<DeepPartial<V5eActor['_data']>>,

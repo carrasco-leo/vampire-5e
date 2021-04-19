@@ -15,15 +15,7 @@ export interface V5ePowerSheetData extends ItemSheet.Data<V5eItem> {
 
 export class V5ePowerItemSheet extends V5eItemSheet<V5ePowerSheetData> {
 	/** @override */
-	static get defaultOptions(): BaseEntitySheet.Options {
-		const options = super.defaultOptions;
-		// options.tabs[0].initial = 'details';
-
-		return options;
-	}
-
-	/** @override */
-	get pug() { return PowerSheetPug; }
+	get innerRenderFn(): (data: any) => string { return PowerSheetPug; }
 
 	/** @override */
 	getData() {

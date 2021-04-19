@@ -3,12 +3,13 @@
 // ~/src/actors/sheets
 //
 
-import { V5eActorSheet } from './actor-sheet';
+import { V5eActorSheet } from '../actor-sheet';
+import type { V5eCharacterSheetData } from '../actor-data';
 
 import CharacterSheetPug from '../../templates/actors/character-sheet.pug';
 import LimitedCharacterSheetPug from '../../templates/actors/limited-character-sheet.pug';
 
-export class V5eCharacterSheet extends V5eActorSheet {
+export class V5eCharacterSheet extends V5eActorSheet<V5eCharacterSheetData> {
 	/** @override */
 	static get defaultOptions() {
 		const options = super.defaultOptions;
@@ -20,7 +21,7 @@ export class V5eCharacterSheet extends V5eActorSheet {
 				{
 					navSelector: '.sheet-tabs',
 					contentSelector: '.sheet-body',
-					initial: 'blood',
+					initial: 'stats',
 				},
 			],
 			scrollY: [
@@ -33,7 +34,7 @@ export class V5eCharacterSheet extends V5eActorSheet {
 	}
 
 	/** @override */
-	get pug() {
+	get innerRenderFn(): (data: any) => string {
 		if (this.actor.limited && !game.user.isGM) {
 			return LimitedCharacterSheetPug;
 		}

@@ -7,7 +7,7 @@ import { V5eItemSheet } from '../item-sheet';
 
 import SpecialitySheetPug from '../../templates/items/speciality-sheet.pug';
 
-export class V5eSpecialityItemSheet extends V5eItemSheet {
+export class V5eSpecialityItemSheet extends V5eItemSheet<{}> {
 	/** @override */
-	get pug() { return SpecialitySheetPug; }
+	get innerRenderFn(): (data: any) => string { return SpecialitySheetPug; }
 }
